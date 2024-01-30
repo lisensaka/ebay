@@ -1,0 +1,45 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.17'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.lisen'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.7.17'
+	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+//	Mapstruct : mapstruct-processor annotation in order to auto-generate the implementation file it has to be 'annotationProcessor'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+	implementation 'org.flywaydb:flyway-core'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//	Implementing Security
+	implementation 'org.springframework.boot:spring-boot-starter-security:'
+	implementation 'javax.servlet:javax.servlet-api:4.0.0' // Jakarta EE 9 API with javax.servlet
+	implementation 'org.springframework.security:spring-security-web:5.7.8'
+	implementation'io.jsonwebtoken:jjwt:0.9.1'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
